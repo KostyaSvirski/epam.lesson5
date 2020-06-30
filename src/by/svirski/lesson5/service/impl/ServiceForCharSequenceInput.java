@@ -5,7 +5,7 @@ import by.svirski.lesson5.service.TasksInterface;
 public class ServiceForCharSequenceInput implements TasksInterface<char[]>{
 
 	@Override
-	public char[] changeSymbolInLine(char[] str, char SymbolToChange, char newSymbol) {
+	public char[] changeSymbolInLine(char[] str, char symbolToChange, char newSymbol) {
 		// TODO Auto-generated method stub
 		return null;
 	}

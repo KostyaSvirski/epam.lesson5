@@ -5,7 +5,7 @@ import by.svirski.lesson5.service.TasksInterface;
 public class ServiceForStringInput implements TasksInterface<String>{
 
 	@Override
-	public String changeSymbolInLine(String str, char SymbolToChange, char newSymbol) {
+	public String changeSymbolInLine(String str, char symbolToChange, char newSymbol) {
 		// TODO Auto-generated method stub
 		return null;
 	}
