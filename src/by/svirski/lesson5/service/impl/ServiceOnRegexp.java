@@ -2,34 +2,34 @@ package by.svirski.lesson5.service.impl;
 
 import by.svirski.lesson5.service.TasksInterface;
 
-public class ServiceForCharSequenceInput implements TasksInterface<char[]>{
+public class ServiceOnRegexp implements TasksInterface<String>{
 
 	@Override
-	public char[] changeSymbolInLine(char[] str, char symbolToChange, char newSymbol) {
+	public String changeSymbolInLine(String str, int positionOfSymbol, char newSymbol) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public char[] errorCorrection(char[] str) {
+	public String errorCorrection(String str) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public char[] changeOnSubstr(char[] str, String substring, int lengthOfWord) {
+	public String changeOnSubstr(String str, String substring, int lengthOfWord) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public char[] deleteNotLettersSymbols(char[] str) {
+	public String deleteNotLettersSymbols(String str) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public char[] deleteWordsGivenLengths(char[] str, int length) {
+	public String deleteWordsGivenLengths(String str, int length) {
 		// TODO Auto-generated method stub
 		return null;
 	}
