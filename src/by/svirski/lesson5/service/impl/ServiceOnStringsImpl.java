@@ -16,7 +16,7 @@ public class ServiceOnStringsImpl extends StringUtilities implements TasksInterf
 			String[] strArray = str.split(NON_WORD_CHACRACTER);
 			for (int i = 0; i < strArray.length; i++) {
 				if (strArray[i].length() > positionOfSymbolChange) {
-					strArray[i] = strArray[i].replace(strArray[i].charAt(positionOfSymbolChange), newSymbol);
+					strArray[i] = strArray[i].replace(strArray[i].charAt(positionOfSymbolChange-1), newSymbol);
 				}
 			}
 			return transformToString(strArray);
@@ -29,9 +29,9 @@ public class ServiceOnStringsImpl extends StringUtilities implements TasksInterf
 	public String errorCorrection(String str) throws ProjectStringsException {
 		if (validatorStrings.validateValues(str)) {
 			String strArray[] = str.split(NON_WORD_CHACRACTER);
-			for (String tempStr : strArray) {
-				if (tempStr.indexOf(ERROR_SEQUENCE) != -1) {
-					tempStr = tempStr.replace(ERROR_SEQUENCE, CORRECT_SEQUENCE);
+			for (int i = 0; i < strArray.length; i++) {
+				if (strArray[i].indexOf(ERROR_SEQUENCE) != -1) {
+					strArray[i] = strArray[i].replace(ERROR_SEQUENCE, CORRECT_SEQUENCE);
 				}
 			}
 			return transformToString(strArray);
@@ -44,9 +44,9 @@ public class ServiceOnStringsImpl extends StringUtilities implements TasksInterf
 	public String changeOnSubstr(String str, String substring, int lengthOfWord) throws ProjectStringsException {
 		if (validatorStrings.validateValues(str, substring, lengthOfWord)) {
 			String[] strArray = str.split(NON_WORD_CHACRACTER);
-			for (String tempStr : strArray) {
-				if (tempStr.length() == lengthOfWord) {
-					tempStr = substring;
+			for (int i = 0; i < strArray.length; i++) {
+				if (strArray[i].length() == lengthOfWord) {
+					strArray[i] = substring;
 				}
 			}
 			return transformToString(strArray);
