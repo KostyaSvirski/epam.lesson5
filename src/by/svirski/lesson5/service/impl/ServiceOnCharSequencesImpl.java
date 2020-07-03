@@ -32,8 +32,8 @@ public class ServiceOnCharSequencesImpl extends StringUtilities implements Tasks
 	public char[] errorCorrection(char[] textInput) throws ProjectStringsException {
 		if(validatorChar.validateValues(textInput)) {
 			for (int i = 0; i < textInput.length; i++) {
-				if (textInput[i] == 'Р' && textInput[i + 1] == 'А') {
-					textInput[i + 1] = 'О';
+				if (textInput[i] == 'p' && textInput[i + 1] == 'a') {
+					textInput[i + 1] = 'o';
 					i++;
 				}
 			}
@@ -44,9 +44,9 @@ public class ServiceOnCharSequencesImpl extends StringUtilities implements Tasks
 	}
 
 	@Override
-	public char[] changeOnSubstr(char[] str, String substring, int lengthOfWord) throws ProjectStringsException {
-		if(validatorChar.validateValues(str, substring, lengthOfWord)) {
-			String[] wordArray = transformToString(str).split(NON_WORD_CHACRACTER);
+	public char[] changeOnSubstr(char[] textInput, String substring, int lengthOfWord) throws ProjectStringsException {
+		if(validatorChar.validateValues(textInput, substring, lengthOfWord)) {
+			String[] wordArray = transformToString(textInput).split(NON_WORD_CHACRACTER);
 			for (String word : wordArray) {
 				if (word.length() == lengthOfWord) {
 					word = substring;
@@ -59,14 +59,14 @@ public class ServiceOnCharSequencesImpl extends StringUtilities implements Tasks
 	}
 
 	@Override
-	public char[] deleteNotLetterSymbols(char[] str) throws ProjectStringsException {
-		if(validatorChar.validateValues(str)) {
+	public char[] deleteNotLetterSymbols(char[] textInput) throws ProjectStringsException {
+		if(validatorChar.validateValues(textInput)) {
 			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < str.length; i++) {
-				if (Character.isLetter(str[i]) || Character.isWhitespace(str[i])) {
-					sb.append(str[i]);
-				} else if (i - 1 >= 0 && i + 1 < str.length) {
-					if (Character.isLetter(str[i - 1]) && Character.isLetter(str[i + 1])) {
+			for (int i = 0; i < textInput.length; i++) {
+				if (Character.isLetter(textInput[i]) || Character.isWhitespace(textInput[i])) {
+					sb.append(textInput[i]);
+				} else if (i - 1 >= 0 && i + 1 < textInput.length) {
+					if (Character.isLetter(textInput[i - 1]) && Character.isLetter(textInput[i + 1])) {
 						sb.append(' ');
 					}
 				}
@@ -78,10 +78,10 @@ public class ServiceOnCharSequencesImpl extends StringUtilities implements Tasks
 	}
 
 	@Override
-	public char[] deleteWordsGivenLengths(char[] str, int length) throws ProjectStringsException {
-		if(validatorChar.validateValues(str, length)) {
+	public char[] deleteWordsGivenLengths(char[] textInput, int length) throws ProjectStringsException {
+		if(validatorChar.validateValues(textInput, length)) {
 			StringBuilder sb = new StringBuilder();
-			String[] wordArray = transformToString(str).split("\\W");
+			String[] wordArray = transformToString(textInput).split("\\W");
 			for (String word : wordArray) {
 				char[] charSequenceWord = word.toCharArray();
 				if (charSequenceWord.length != length) {

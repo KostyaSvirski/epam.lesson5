@@ -12,7 +12,6 @@ public class StringUtilities {
 		StringBuilder builder = new StringBuilder();
 		for (String tempStr : strArray) {
 			builder.append(tempStr);
-			//builder.append();
 		}
 		return builder.toString();
 	}
