@@ -7,9 +7,9 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
-import by.svirski.lesson5.input.SourceInputMethods;
+import by.svirski.lesson5.input.InputInterface;
 
-public class InputStrings implements SourceInputMethods<String> {
+public class InputStrings implements InputInterface<String> {
 	
 	public static final String URI = "D:\\java\\EPAM\\svirski\\lesson5\\source.txt";
 	
