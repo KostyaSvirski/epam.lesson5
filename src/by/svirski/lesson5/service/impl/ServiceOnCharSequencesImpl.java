@@ -10,34 +10,34 @@ public class ServiceOnCharSequencesImpl extends StringUtilities implements Tasks
 	private static ValidateCharSequenceInputImpl validatorChar = new ValidateCharSequenceInputImpl();
 
 	@Override
-	public char[] changeSymbolInLine(char[] str, int positionOfSymbolChange, char newSymbol)
+	public char[] changeSymbolInLine(char[] textInput, int positionOfSymbolChange, char newSymbol)
 			throws ProjectStringsException {
 
-		if (validatorChar.validateValues(str, positionOfSymbolChange, newSymbol)) {
+		if (validatorChar.validateValues(textInput, positionOfSymbolChange, newSymbol)) {
 			int currentPositionSymbolWord = 0;
-			for (int i = 0; i < str.length; i++) {
-				if (str[i] == ' ') {
+			for (int i = 0; i < textInput.length; i++) {
+				if (textInput[i] == ' ') {
 					currentPositionSymbolWord = 0;
 				} else if (currentPositionSymbolWord == positionOfSymbolChange) {
-					str[i] = newSymbol;
+					textInput[i] = newSymbol;
 				}
 			}
-			return str;
+			return textInput;
 		} else {
 			throw new ProjectStringsException("Invalid input");
 		}
 	}
 
 	@Override
-	public char[] errorCorrection(char[] str) throws ProjectStringsException {
-		if(validatorChar.validateValues(str)) {
-			for (int i = 0; i < str.length; i++) {
-				if (str[i] == 'Р' && str[i + 1] == 'А') {
-					str[i + 1] = 'О';
+	public char[] errorCorrection(char[] textInput) throws ProjectStringsException {
+		if(validatorChar.validateValues(textInput)) {
+			for (int i = 0; i < textInput.length; i++) {
+				if (textInput[i] == 'Р' && textInput[i + 1] == 'А') {
+					textInput[i + 1] = 'О';
 					i++;
 				}
 			}
-			return str;			
+			return textInput;			
 		} else {
 			throw new ProjectStringsException("Invalid input");
 		}

@@ -20,10 +20,10 @@ public class ServiceOnRegexpImpl implements TasksInterface<String> {
 	private static ValidateStringInputImpl validatorStrings = new ValidateStringInputImpl();
 
 	@Override
-	public String changeSymbolInLine(String str, int positionOfSymbol, char newSymbol) throws ProjectStringsException {
-		if (validatorStrings.validateValues(str, positionOfSymbol, newSymbol)) {
+	public String changeSymbolInLine(String textInput, int positionOfSymbol, char newSymbol) throws ProjectStringsException {
+		if (validatorStrings.validateValues(textInput, positionOfSymbol, newSymbol)) {
 			Pattern pattern = Pattern.compile(String.format(LETTER_ON_GIVEN_POSITION, positionOfSymbol - 1));
-			Matcher matcher = pattern.matcher(str);
+			Matcher matcher = pattern.matcher(textInput);
 			String resultString = matcher.replaceAll(String.format(REPLACEMENET_GROUP, newSymbol));
 			return resultString;
 		} else {
@@ -32,10 +32,10 @@ public class ServiceOnRegexpImpl implements TasksInterface<String> {
 	}
 
 	@Override
-	public String errorCorrection(String str) throws ProjectStringsException {
-		if(validatorStrings.validateValues(str)) {
+	public String errorCorrection(String textInput) throws ProjectStringsException {
+		if(validatorStrings.validateValues(textInput)) {
 			Pattern pattern = Pattern.compile(ERROR_TO_CORRECT);
-			Matcher matcher = pattern.matcher(str);
+			Matcher matcher = pattern.matcher(textInput);
 			String resultString = matcher.replaceAll(String.format(REPLACEMENET_GROUP, "ра"));
 			return resultString;			
 		} else {
@@ -44,10 +44,10 @@ public class ServiceOnRegexpImpl implements TasksInterface<String> {
 	}
 
 	@Override
-	public String changeOnSubstr(String str, String substring, int lengthOfWord) throws ProjectStringsException {
-		if (validatorStrings.validateValues(str, substring, lengthOfWord)) {
+	public String changeOnSubstr(String textInput, String substring, int lengthOfWord) throws ProjectStringsException {
+		if (validatorStrings.validateValues(textInput, substring, lengthOfWord)) {
 			Pattern pattern = Pattern.compile(String.format(WORD_GIVEN_LENGTH, lengthOfWord));
-			Matcher matcher = pattern.matcher(str);
+			Matcher matcher = pattern.matcher(textInput);
 			String resultString = matcher.replaceAll(substring);
 			return resultString;			
 		} else {
@@ -56,10 +56,10 @@ public class ServiceOnRegexpImpl implements TasksInterface<String> {
 	}
 
 	@Override
-	public String deleteNotLetterSymbols(String str) throws ProjectStringsException {
-		if(validatorStrings.validateValues(str)) {
+	public String deleteNotLetterSymbols(String textInput) throws ProjectStringsException {
+		if(validatorStrings.validateValues(textInput)) {
 			Pattern pattern = Pattern.compile(REMOVE_NOT_LETTER_SPACE);
-			Matcher matcher = pattern.matcher(str);
+			Matcher matcher = pattern.matcher(textInput);
 			String resultString = matcher.replaceAll(" ");
 			return resultString;			
 		} else {
@@ -68,16 +68,16 @@ public class ServiceOnRegexpImpl implements TasksInterface<String> {
 	}
 
 	@Override
-	public String deleteWordsGivenLengths(String str, int length) throws ProjectStringsException {
-		if (validatorStrings.validateValues(str, length)) {
+	public String deleteWordsGivenLengths(String textInput, int length) throws ProjectStringsException {
+		if (validatorStrings.validateValues(textInput, length)) {
 			Pattern pattern = Pattern.compile(String.format(REMOVE_WORD_CONSONANTS_LENGTH, length - 1));
-			Matcher matcher = pattern.matcher(str);
+			Matcher matcher = pattern.matcher(textInput);
 			while (matcher.find()) {
 				if (CONSONANTS.contains(matcher.group(1))) {
-					str = matcher.replaceAll("");
+					textInput = matcher.replaceAll("");
 				}
 			}
-			return str;			
+			return textInput;			
 		} else {
 			throw new ProjectStringsException("Invalid input");
 		}

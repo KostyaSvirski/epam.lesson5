@@ -10,56 +10,56 @@ public class ServiceOnStringsImpl extends StringUtilities implements TasksInterf
 	private static ValidateStringInputImpl validatorStrings = new ValidateStringInputImpl();
 
 	@Override
-	public String changeSymbolInLine(String str, int positionOfSymbolChange, char newSymbol)
+	public String changeSymbolInLine(String textInput, int positionOfSymbolChange, char newSymbol)
 			throws ProjectStringsException {
-		if (validatorStrings.validateValues(str, positionOfSymbolChange, newSymbol)) {
-			String[] strArray = str.split(NON_WORD_CHACRACTER);
-			for (int i = 0; i < strArray.length; i++) {
-				if (strArray[i].length() > positionOfSymbolChange) {
-					strArray[i] = strArray[i].replace(strArray[i].charAt(positionOfSymbolChange-1), newSymbol);
+		if (validatorStrings.validateValues(textInput, positionOfSymbolChange, newSymbol)) {
+			String[] wordArray = textInput.split(NON_WORD_CHACRACTER);
+			for (int i = 0; i < wordArray.length; i++) {
+				if (wordArray[i].length() > positionOfSymbolChange) {
+					wordArray[i] = wordArray[i].replace(wordArray[i].charAt(positionOfSymbolChange-1), newSymbol);
 				}
 			}
-			return transformToString(strArray);
+			return transformToString(wordArray);
 		} else {
 			throw new ProjectStringsException("Invalid input");
 		}
 	}
 
 	@Override
-	public String errorCorrection(String str) throws ProjectStringsException {
-		if (validatorStrings.validateValues(str)) {
-			String strArray[] = str.split(NON_WORD_CHACRACTER);
-			for (int i = 0; i < strArray.length; i++) {
-				if (strArray[i].indexOf(ERROR_SEQUENCE) != -1) {
-					strArray[i] = strArray[i].replace(ERROR_SEQUENCE, CORRECT_SEQUENCE);
+	public String errorCorrection(String textInput) throws ProjectStringsException {
+		if (validatorStrings.validateValues(textInput)) {
+			String wordArray[] = textInput.split(NON_WORD_CHACRACTER);
+			for (int i = 0; i < wordArray.length; i++) {
+				if (wordArray[i].indexOf(ERROR_SEQUENCE) != -1) {
+					wordArray[i] = wordArray[i].replace(ERROR_SEQUENCE, CORRECT_SEQUENCE);
 				}
 			}
-			return transformToString(strArray);
+			return transformToString(wordArray);
 		} else {
 			throw new ProjectStringsException("Invalid input");
 		}
 	}
 
 	@Override
-	public String changeOnSubstr(String str, String substring, int lengthOfWord) throws ProjectStringsException {
-		if (validatorStrings.validateValues(str, substring, lengthOfWord)) {
-			String[] strArray = str.split(NON_WORD_CHACRACTER);
-			for (int i = 0; i < strArray.length; i++) {
-				if (strArray[i].length() == lengthOfWord) {
-					strArray[i] = substring;
+	public String changeOnSubstr(String textInput, String substring, int lengthOfWord) throws ProjectStringsException {
+		if (validatorStrings.validateValues(textInput, substring, lengthOfWord)) {
+			String[] wordArray = textInput.split(NON_WORD_CHACRACTER);
+			for (int i = 0; i < wordArray.length; i++) {
+				if (wordArray[i].length() == lengthOfWord) {
+					wordArray[i] = substring;
 				}
 			}
-			return transformToString(strArray);
+			return transformToString(wordArray);
 		} else {
 			throw new ProjectStringsException("Invalid input");
 		}
 	}
 
 	@Override
-	public String deleteNotLetterSymbols(String str) throws ProjectStringsException {
-		if (validatorStrings.validateValues(str)) {
-			String[] strArray = str.split(ANY_LETTER_AND_SPACE);
-			String result = transformToString(strArray);
+	public String deleteNotLetterSymbols(String textInput) throws ProjectStringsException {
+		if (validatorStrings.validateValues(textInput)) {
+			String[] wordArray = textInput.split(ANY_LETTER_AND_SPACE);
+			String result = transformToString(wordArray);
 			return result;
 		} else {
 			throw new ProjectStringsException("Invalid input");
@@ -67,11 +67,11 @@ public class ServiceOnStringsImpl extends StringUtilities implements TasksInterf
 	}
 
 	@Override
-	public String deleteWordsGivenLengths(String str, int lengthOfWord) throws ProjectStringsException {
-		if (validatorStrings.validateValues(str, lengthOfWord)) {
-			String[] strArray = str.split(" ");
+	public String deleteWordsGivenLengths(String textInput, int lengthOfWord) throws ProjectStringsException {
+		if (validatorStrings.validateValues(textInput, lengthOfWord)) {
+			String[] wordArray = textInput.split(" ");
 			StringBuilder sb = new StringBuilder();
-			for (String tempStr : strArray) {
+			for (String tempStr : wordArray) {
 				if (!tempStr.substring(0, 1).matches(CONSONANTS) || tempStr.length() != lengthOfWord) {
 					sb.append(tempStr);
 					sb.append(" ");
